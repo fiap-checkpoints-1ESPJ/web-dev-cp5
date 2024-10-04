@@ -21,9 +21,10 @@ const HeroTextWrapper = styled.article`
 `
 
 const Title = styled.h1`
-  font-size: 4rem;
+  font-family: "Qwitcher Grypen", cursive;
+  font-size: clamp(4rem, 4.5vw, 8rem);
   margin-bottom: 1rem;
-  line-height: 0;
+  line-height: .5;
 `;
 
 const Description = styled.p`

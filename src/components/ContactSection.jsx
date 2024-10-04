@@ -1,5 +1,4 @@
-// components/ContactSection.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Contact = styled.section`
@@ -10,7 +9,7 @@ const Contact = styled.section`
 
 const Title = styled.h2`
   font-size: 2.5rem;
-  color: #ff0000;
+  color: #43aa8b;
   margin-bottom: 2rem;
 `;
 
@@ -31,12 +30,12 @@ const Input = styled.input`
 const Button = styled.button`
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  background-color: #ff0000;
+  background-color: #43aa8b;
   color: white;
   border: none;
   cursor: pointer;
   &:hover {
-    background-color: #cc0000;
+      opacity: 85%;
   }
 `;
 

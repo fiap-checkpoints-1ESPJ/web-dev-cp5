@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { FiMenu, FiSearch, FiUser } from 'react-icons/fi';
+import { FiMenu, FiUser } from 'react-icons/fi';
 
 const HeaderWrapper = styled.header`
   position: sticky;
@@ -34,13 +34,10 @@ const NavLink = styled.a`
   text-decoration: none;
   font-weight: medium;
   color: #f3f3f3;
-  transition: color 0.3s;
-  &:hover {
-    color: #333;
-  }
 
-  &.active {
-    color: #333;
+  &:hover {
+    color: #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
   }
 `;
 
@@ -51,6 +48,7 @@ const HamburgerButton = styled.button`
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  color: #f3f3f3;
 
   @media (min-width: 768px) {
     display: none;
@@ -78,7 +76,6 @@ const MobileNavLink = styled.a`
   text-decoration: none;
   font-weight: medium;
   color: #888;
-  transition: color 0.3s;
 
   &:hover {
     color: #333;
@@ -113,21 +110,6 @@ const SearchContainer = styled.div`
   }
 `;
 
-const Input = styled.input`
-  padding: 8px 8px 8px 32px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-
-  @media (min-width: 768px) {
-    width: 200px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 300px;
-  }
-`;
-
 const UserButton = styled.button`
   background: none;
   border: none;
@@ -137,10 +119,10 @@ const UserButton = styled.button`
   cursor: pointer;
   border-radius: 50%;
   padding: 8px;
+  border: 1px solid transparent;
 
   &:hover {
-    background-color: #eee;
-    color: grey;
+    border: 1px solid  #eee;
   }
 `;
 
@@ -174,13 +156,8 @@ const Header = () => {
             </MobileNav>
 
             <NavSearchWrapper>
-                <SearchContainer>
-                    <FiSearch size={16} />
-                    <Input type="search" placeholder="Search products..." />
-                </SearchContainer>
-
                 <UserButton>
-                    <FiUser size={20} color='#f3f3f3' />
+                    <FiUser size={20} color='#f3f3f3'  />
                 </UserButton>
             </NavSearchWrapper>
         </HeaderWrapper>
