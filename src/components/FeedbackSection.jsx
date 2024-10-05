@@ -88,17 +88,19 @@ const FeedbackSection = () => {
 
     return (
         <FeedbackWrapper>
-            <Title>User Feedback</Title>
-            <ReviewContainer>
-                {reviews.map((review, index) => (
-                    <ReviewCardComponent
-                        key={index}
-                        name={review.name}
-                        text={review.text}
-                        rating={review.rating}
-                    />
-                ))}
-            </ReviewContainer>
+            <div>
+                <Title>User Feedback</Title>
+                <ReviewContainer>
+                    {reviews.map((review, index) => (
+                        <ReviewCardComponent
+                            key={index}
+                            name={review.name}
+                            text={review.text}
+                            rating={review.rating}
+                        />
+                    ))}
+                </ReviewContainer>
+            </div>
         </FeedbackWrapper>
     );
 };

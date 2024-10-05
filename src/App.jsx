@@ -19,7 +19,11 @@ const App = () => {
     return (
         <MainContent>
             <Header />
-        <FeedbackSection/>
+            <HeroSection />
+            <BenefitsSection />
+            <FunctionalitiesSection />
+            <FoodOptionsSection />
+            <FeedbackSection />
             <ContactSection />
             <Footer />
             <BackToTopButton />
