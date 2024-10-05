@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { FiMenu, FiUser } from 'react-icons/fi';
 
 const HeaderWrapper = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
   display: flex;
+  width: 100dvw;
   height: 64px;
-  padding-inline: 2rem;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
@@ -99,6 +99,7 @@ const UserButton = styled.button`
   border-radius: 50%;
   padding: 8px;
   border: 1px solid transparent;
+  margin-right: 5rem;
 
   &:hover {
     border: 1px solid  #eee;
