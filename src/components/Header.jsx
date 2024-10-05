@@ -7,6 +7,7 @@ const HeaderWrapper = styled.header`
   top: 0;
   display: flex;
   height: 64px;
+  padding-inline: 2rem;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
@@ -88,28 +89,6 @@ const NavSearchWrapper = styled.section`
     column-gap: 2rem;
 `
 
-const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 300px;
-  position: relative;
-  margin-left: auto;
-
-  @media (min-width: 768px) {
-    width: auto;
-    margin-left: 16px;
-  }
-
-  svg {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-  }
-`;
-
 const UserButton = styled.button`
   background: none;
   border: none;
@@ -130,7 +109,7 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+        setMenuOpen(prev => !prev);
     };
 
     return (
@@ -140,19 +119,19 @@ const Header = () => {
             </HamburgerButton>
 
             <Nav>
-                <NavLink href="#">Welcome</NavLink>
-                <NavLink href="#">Benefits</NavLink>
-                <NavLink href="#">Funcionalities</NavLink>
-                <NavLink href="#">Reviews</NavLink>
-                <NavLink href="#">Contact</NavLink>
+                <NavLink href="#hero">Welcome</NavLink>
+                <NavLink href="#benefits">Benefits</NavLink>
+                <NavLink href="#functionalities">Funcionalities</NavLink>
+                <NavLink href="#reviews">Reviews</NavLink>
+                <NavLink href="#contact">Contact</NavLink>
             </Nav>
 
             <MobileNav isOpen={menuOpen}>
-                <MobileNavLink href="#">Welcome</MobileNavLink>
-                <MobileNavLink href="#">Benefits</MobileNavLink>
-                <MobileNavLink href="#">Funcionalities</MobileNavLink>
-                <MobileNavLink href="#">Reviews</MobileNavLink>
-                <MobileNavLink href="#">Contact</MobileNavLink>
+                <MobileNavLink href="#hero">Welcome</MobileNavLink>
+                <MobileNavLink href="#benefits">Benefits</MobileNavLink>
+                <MobileNavLink href="#functionalities">Funcionalities</MobileNavLink>
+                <MobileNavLink href="#reviews">Reviews</MobileNavLink>
+                <MobileNavLink href="#contact">Contact</MobileNavLink>
             </MobileNav>
 
             <NavSearchWrapper>

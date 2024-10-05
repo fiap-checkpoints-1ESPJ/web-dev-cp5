@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 
-// Styled Components
 const FeedbackWrapper = styled.section`
   padding: 4rem;
   background-color: #f9f9f9;
@@ -51,59 +50,59 @@ const Star = styled(FaStar)`
   margin-right: 5px;
 `;
 
-// Review Card Component
 const ReviewCardComponent = ({ name, text, rating }) => {
-  const renderStars = () => {
-    const totalStars = 5;
-    return Array.from({ length: totalStars }, (_, index) => (
-      <Star key={index} active={index < rating} />
-    ));
-  };
+    const renderStars = () => {
+        const totalStars = 5;
+        return Array.from({ length: totalStars }, (_, index) => (
+            <Star key={index} active={index < rating} />
+        ));
+    };
 
-  return (
-    <ReviewCard>
-      <ReviewerName>{name}</ReviewerName>
-      <ReviewText>{text}</ReviewText>
-      <Stars>{renderStars()}</Stars>
-    </ReviewCard>
-  );
+    return (
+        <ReviewCard>
+            <ReviewerName>{name}</ReviewerName>
+            <ReviewText>{text}</ReviewText>
+            <Stars>{renderStars()}</Stars>
+        </ReviewCard>
+    );
 };
 
-// Feedback Section Component
 const FeedbackSection = () => {
-  const reviews = [
-    {
-      name: 'John Doe',
-      text: 'Amazing service! The food arrived hot and super fast.',
-      rating: 5,
-    },
-    {
-      name: 'Jane Smith',
-      text: 'Great variety of restaurants. Easy to use app!',
-      rating: 4,
-    },
-    {
-      name: 'Mark Johnson',
-      text: 'Had some issues with payment, but overall good.',
-      rating: 3,
-    },
-  ];
+    const reviews = [
+        {
+            name: 'John Doe',
+            text: 'Amazing service! The food arrived hot and super fast.',
+            rating: 5,
+        },
+        {
+            name: 'Jane Smith',
+            text: 'Great variety of restaurants. Easy to use app!',
+            rating: 4,
+        },
+        {
+            name: 'Mark Johnson',
+            text: 'Had some issues with payment, but overall good.',
+            rating: 3,
+        },
+    ];
 
-  return (
-    <FeedbackWrapper>
-      <Title>User Feedback</Title>
-      <ReviewContainer>
-        {reviews.map((review, index) => (
-          <ReviewCardComponent
-            key={index}
-            name={review.name}
-            text={review.text}
-            rating={review.rating}
-          />
-        ))}
-      </ReviewContainer>
-    </FeedbackWrapper>
-  );
+    return (
+        <FeedbackWrapper>
+            <div>
+                <Title>User Feedback</Title>
+                <ReviewContainer>
+                    {reviews.map((review, index) => (
+                        <ReviewCardComponent
+                            key={index}
+                            name={review.name}
+                            text={review.text}
+                            rating={review.rating}
+                        />
+                    ))}
+                </ReviewContainer>
+            </div>
+        </FeedbackWrapper>
+    );
 };
 
 export default FeedbackSection;
