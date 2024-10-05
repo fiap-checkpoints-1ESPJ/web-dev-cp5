@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 import { FaSearch, FaFilter, FaShoppingCart, FaMapMarkerAlt, FaHeart } from 'react-icons/fa';
 
-// Styled Components
 const FunctionalitiesWrapper = styled.section`
   padding: 4rem;
   background-color: #fff;
@@ -53,7 +51,6 @@ const FeatureDescription = styled.p`
   color: #666;
 `;
 
-// Feature Card Component
 const FeatureCardComponent = ({ icon, title, description }) => {
   return (
     <FeatureCard>
@@ -64,7 +61,6 @@ const FeatureCardComponent = ({ icon, title, description }) => {
   );
 };
 
-// Functionalities Section Component
 const FunctionalitiesSection = () => {
   const features = [
     {
@@ -95,7 +91,7 @@ const FunctionalitiesSection = () => {
   ];
 
   return (
-    <FunctionalitiesWrapper id="features">
+    <FunctionalitiesWrapper id="functionalities">
       <Title>App Features</Title>
       <FeaturesContainer>
         {features.map((feature, index) => (
