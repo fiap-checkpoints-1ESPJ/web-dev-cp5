@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FaTruck, FaUtensils, FaCreditCard } from 'react-icons/fa';
 
-// Styled Components
 const BenefitsWrapper = styled.section`
   padding: 4rem;
   background-color: #f9f9f9;
@@ -37,7 +36,7 @@ const BenefitCard = styled.div`
 
 const IconWrapper = styled.div`
   font-size: 2.5rem;
-  color: #ff6347; /* Tomato color similar to iFood */
+  color: #ff6347;
   margin-bottom: 1rem;
 `;
 
@@ -52,7 +51,6 @@ const BenefitDescription = styled.p`
   color: #666;
 `;
 
-// Benefit Card Component
 const BenefitCardComponent = ({ icon, title, description }) => {
   return (
     <BenefitCard>
@@ -63,7 +61,6 @@ const BenefitCardComponent = ({ icon, title, description }) => {
   );
 };
 
-// Benefits Section Component
 const BenefitsSection = () => {
   const benefits = [
     {

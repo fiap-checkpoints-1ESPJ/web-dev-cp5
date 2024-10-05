@@ -11,11 +11,9 @@
 
 ## Dependências 📦
 <ul>
-    <li>Styled-components</li>
-    <li>Fetch API</li>
+    <li>styled-components</li>
+    <li>react-scroll</li>
 </ul>
- 
-<br>
 
 ## Descrição
 O GourmetOn é um projeto de uma plataforma de delivery de comidas que oferece uma experiência intuitiva e eficiente para os usuários. Com funcionalidades como pesquisa rápida de restaurantes, filtragem por culinária, checkout facilitado e rastreamento em tempo real, a plataforma busca simplificar o processo de pedir refeições, proporcionando uma jornada do usuário agradável e imersiva.
@@ -85,11 +83,13 @@ import FoodOptionsSection from './components/FoodOptionsSection'
 import FeedbackSection from './components/FeedbackSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import BackToTopButton from './components/GoBackToTop'
 import styled from 'styled-components';
 
 const MainContent = styled.main`
-    width: 100dvw;
+    width: 100vw;
     min-width: 320px;
+    overflow-x:hidden;
 `
 
 const App = () => {
@@ -103,11 +103,13 @@ const App = () => {
             <FeedbackSection />
             <ContactSection />
             <Footer />
+            <BackToTopButton />
         </MainContent>
     );
 }
 
 export default App;
+
 ```
 <br>
 
@@ -123,6 +125,7 @@ const HeaderWrapper = styled.header`
   top: 0;
   display: flex;
   height: 64px;
+  padding-inline: 2rem;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
@@ -204,28 +207,6 @@ const NavSearchWrapper = styled.section`
     column-gap: 2rem;
 `
 
-const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 300px;
-  position: relative;
-  margin-left: auto;
-
-  @media (min-width: 768px) {
-    width: auto;
-    margin-left: 16px;
-  }
-
-  svg {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-  }
-`;
-
 const UserButton = styled.button`
   background: none;
   border: none;
@@ -246,7 +227,7 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+        setMenuOpen(prev => !prev);
     };
 
     return (
@@ -256,19 +237,19 @@ const Header = () => {
             </HamburgerButton>
 
             <Nav>
-                <NavLink href="#">Welcome</NavLink>
-                <NavLink href="#">Benefits</NavLink>
-                <NavLink href="#">Funcionalities</NavLink>
-                <NavLink href="#">Reviews</NavLink>
-                <NavLink href="#">Contact</NavLink>
+                <NavLink href="#hero">Welcome</NavLink>
+                <NavLink href="#benefits">Benefits</NavLink>
+                <NavLink href="#functionalities">Funcionalities</NavLink>
+                <NavLink href="#reviews">Reviews</NavLink>
+                <NavLink href="#contact">Contact</NavLink>
             </Nav>
 
             <MobileNav isOpen={menuOpen}>
-                <MobileNavLink href="#">Welcome</MobileNavLink>
-                <MobileNavLink href="#">Benefits</MobileNavLink>
-                <MobileNavLink href="#">Funcionalities</MobileNavLink>
-                <MobileNavLink href="#">Reviews</MobileNavLink>
-                <MobileNavLink href="#">Contact</MobileNavLink>
+                <MobileNavLink href="#hero">Welcome</MobileNavLink>
+                <MobileNavLink href="#benefits">Benefits</MobileNavLink>
+                <MobileNavLink href="#functionalities">Funcionalities</MobileNavLink>
+                <MobileNavLink href="#reviews">Reviews</MobileNavLink>
+                <MobileNavLink href="#contact">Contact</MobileNavLink>
             </MobileNav>
 
             <NavSearchWrapper>
@@ -356,7 +337,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaSearch, FaFilter, FaShoppingCart, FaMapMarkerAlt, FaHeart } from 'react-icons/fa';
 
-// Styled Components
 const FunctionalitiesWrapper = styled.section`
   padding: 4rem;
   background-color: #fff;
@@ -392,7 +372,7 @@ const FeatureCard = styled.div`
 
 const IconWrapper = styled.div`
   font-size: 2.5rem;
-  color: #ff6347; /* Tomato color similar to iFood */
+  color: #ff6347; 
   margin-bottom: 1rem;
 `;
 
@@ -407,7 +387,6 @@ const FeatureDescription = styled.p`
   color: #666;
 `;
 
-// Feature Card Component
 const FeatureCardComponent = ({ icon, title, description }) => {
   return (
     <FeatureCard>
@@ -418,7 +397,6 @@ const FeatureCardComponent = ({ icon, title, description }) => {
   );
 };
 
-// Functionalities Section Component
 const FunctionalitiesSection = () => {
   const features = [
     {
@@ -472,7 +450,6 @@ export default FunctionalitiesSection;
 ## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp5/blob/main/src/components/FoodOptionsSection.jsx">Código</a> 🧑‍💻
 `FoodOptionsSection.jsx`: Mostra uma seleção aleatória de pratos que os usuários podem pedir.
 ```c
-
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -567,7 +544,7 @@ const FoodDeliverySection = () => {
 
 export default FoodDeliverySection;
 ```
-<be>
+<br>
 
 ## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp5/blob/main/src/components/FeedbackSection.jsx">Código</a> 🧑‍💻
 `FeedbackSection.jsx`: Exibe avaliações de clientes sobre o serviço.
@@ -575,7 +552,6 @@ export default FoodDeliverySection;
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
 
-// Styled Components
 const FeedbackWrapper = styled.section`
   padding: 4rem;
   background-color: #f9f9f9;
@@ -625,62 +601,63 @@ const Star = styled(FaStar)`
   margin-right: 5px;
 `;
 
-// Review Card Component
 const ReviewCardComponent = ({ name, text, rating }) => {
-  const renderStars = () => {
-    const totalStars = 5;
-    return Array.from({ length: totalStars }, (_, index) => (
-      <Star key={index} active={index < rating} />
-    ));
-  };
+    const renderStars = () => {
+        const totalStars = 5;
+        return Array.from({ length: totalStars }, (_, index) => (
+            <Star key={index} active={index < rating} />
+        ));
+    };
 
-  return (
-    <ReviewCard>
-      <ReviewerName>{name}</ReviewerName>
-      <ReviewText>{text}</ReviewText>
-      <Stars>{renderStars()}</Stars>
-    </ReviewCard>
-  );
+    return (
+        <ReviewCard>
+            <ReviewerName>{name}</ReviewerName>
+            <ReviewText>{text}</ReviewText>
+            <Stars>{renderStars()}</Stars>
+        </ReviewCard>
+    );
 };
 
-// Feedback Section Component
 const FeedbackSection = () => {
-  const reviews = [
-    {
-      name: 'John Doe',
-      text: 'Amazing service! The food arrived hot and super fast.',
-      rating: 5,
-    },
-    {
-      name: 'Jane Smith',
-      text: 'Great variety of restaurants. Easy to use app!',
-      rating: 4,
-    },
-    {
-      name: 'Mark Johnson',
-      text: 'Had some issues with payment, but overall good.',
-      rating: 3,
-    },
-  ];
+    const reviews = [
+        {
+            name: 'John Doe',
+            text: 'Amazing service! The food arrived hot and super fast.',
+            rating: 5,
+        },
+        {
+            name: 'Jane Smith',
+            text: 'Great variety of restaurants. Easy to use app!',
+            rating: 4,
+        },
+        {
+            name: 'Mark Johnson',
+            text: 'Had some issues with payment, but overall good.',
+            rating: 3,
+        },
+    ];
 
-  return (
-    <FeedbackWrapper>
-      <Title>User Feedback</Title>
-      <ReviewContainer>
-        {reviews.map((review, index) => (
-          <ReviewCardComponent
-            key={index}
-            name={review.name}
-            text={review.text}
-            rating={review.rating}
-          />
-        ))}
-      </ReviewContainer>
-    </FeedbackWrapper>
-  );
+    return (
+        <FeedbackWrapper>
+            <div>
+                <Title>User Feedback</Title>
+                <ReviewContainer>
+                    {reviews.map((review, index) => (
+                        <ReviewCardComponent
+                            key={index}
+                            name={review.name}
+                            text={review.text}
+                            rating={review.rating}
+                        />
+                    ))}
+                </ReviewContainer>
+            </div>
+        </FeedbackWrapper>
+    );
 };
 
 export default FeedbackSection;
+
 ```
 <br>
 
@@ -763,7 +740,6 @@ export default ContactSection;
 import styled from 'styled-components';
 import { FaTruck, FaUtensils, FaCreditCard } from 'react-icons/fa';
 
-// Styled Components
 const BenefitsWrapper = styled.section`
   padding: 4rem;
   background-color: #f9f9f9;
@@ -799,7 +775,7 @@ const BenefitCard = styled.div`
 
 const IconWrapper = styled.div`
   font-size: 2.5rem;
-  color: #ff6347; /* Tomato color similar to iFood */
+  color: #ff6347; 
   margin-bottom: 1rem;
 `;
 
@@ -814,7 +790,6 @@ const BenefitDescription = styled.p`
   color: #666;
 `;
 
-// Benefit Card Component
 const BenefitCardComponent = ({ icon, title, description }) => {
   return (
     <BenefitCard>
@@ -825,7 +800,6 @@ const BenefitCardComponent = ({ icon, title, description }) => {
   );
 };
 
-// Benefits Section Component
 const BenefitsSection = () => {
   const benefits = [
     {
@@ -869,7 +843,6 @@ export default BenefitsSection;
 ## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp5/blob/main/src/components/Footer.jsx">Código</a> 🧑‍💻
 `Footer.jsx`: Componente de rodapé, com links para redes sociais. 
 ```c
-
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
@@ -904,4 +877,71 @@ export default Footer;
 ```
 <br>
 
+## Explicando o <a href="https://github.com/fiap-checkpoints-1ESPJ/web-dev-cp5/blob/main/src/components/GoBackToTop.jsx">Código</a> 🧑‍💻
+`GoBackToTop.jsx`: Componente de CTA (Call To Action), que redireciona o usuário suavemente com a lib react-scroll para o topo da página
+```c
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { ArrowUp } from 'lucide-react';
+import { animateScroll as scroll } from 'react-scroll';
+
+const StyledButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #43aa8b;
+  color: white;
+  border: 1px solid #f3f3f3;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: ${props => props.isVisible ? 'flex' : 'none'};
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: #fff;
+  }
+`;
+
+const BackToTopButton = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: 500,
+      smooth: true,
+    });
+  };
+
+  return (
+    <StyledButton
+      onClick={scrollToTop}
+      isVisible={isVisible}
+      aria-label="Back to top"
+    >
+      <ArrowUp size={24} />
+    </StyledButton>
+  );
+};
+
+export default BackToTopButton;
+```
 
